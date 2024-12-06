@@ -3,19 +3,7 @@ const User = require('../models/User');
 const userView = require('../views/UserView');
 const loginView = require('../views/loginView');
 const registerView = require('../views/registerView');
-const cookies="";
 
-    function getCookie(nom){
-        nom = nom + "=";
-        let liste = document.cookies.split(';');
-        
-            for (let i = 0; i < liste.length; i++){
-                let c = liste[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nom) == 0) return c.substring(nom.length, c.length);
-            }
-                return null;
-    }
 
 
         function getUser(req,res){
