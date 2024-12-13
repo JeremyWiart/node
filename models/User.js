@@ -6,5 +6,7 @@ class User{
             this.name = name;
             this.password = password;
         }
+
+    
 }
 module.exports=User;

@@ -3,6 +3,7 @@ const User = require('../models/User');
 const userView = require('../views/UserView');
 const loginView = require('../views/loginView');
 const registerView = require('../views/registerView');
+const profileView = require('../views/profileView');
 
 
 
@@ -24,10 +25,13 @@ const registerView = require('../views/registerView');
             const {name,password}= req.body;
             const cookie_U = req.cookies.username;
             const cookie_P = req.cookies.password;
-            console.log(cookie_U+cookie_P);
+            //console.log(cookie_U+cookie_P);
             
             if(name===cookie_U && password === cookie_P){
-                res.send("Bienvenue ! "+cookie_U);
+                
+                    
+                        res.location.href='localhost:3000/Profile';
+
             }else{
                 res.send("error wrong username or password !");
             }
@@ -36,11 +40,18 @@ const registerView = require('../views/registerView');
 
         function traitRegister(req,res){
             const {name,password} = req.body
-            if(name != NULL && password != NULL){
+            if((name != []) && (password != [])){
                 res.cookie('username', name);
                 res.cookie('password', password);
                 res.send("enregistrement ok !");
+                
+            }else{
+                res.send("Veuillez remplire tous les champs");
             }
         }
+
+        function showProfile(req,res){
+            res.end(profileView());
+        }
         
-module.exports = {getUser,showLogin,traitLogin,showRegister,traitRegister};
+module.exports = {getUser,showLogin,traitLogin,showRegister,traitRegister,showProfile};
